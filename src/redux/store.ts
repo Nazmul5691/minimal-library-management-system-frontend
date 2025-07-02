@@ -3,7 +3,7 @@ import bookReducer from './features/books/allBookSlice'
 
 export const store = configureStore({
     reducer: {
-        books: bookReducer
+        books: bookReducer,
     }
 })
 

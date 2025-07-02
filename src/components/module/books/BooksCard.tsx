@@ -24,12 +24,12 @@ export default function BooksCard({ book }: IProps) {
             </p>
 
             <div className="flex gap-2 pt-2">
-                <Link to={`/books/${book.isbn}`}>
+                <Link to={`/books/${book._id}`}>
                     <div className="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-100">
                         View
                     </div>
                 </Link>
-                <Link to={`/edit-book/${book.isbn}`}>
+                <Link to={`/edit-book/${book._id}`}>
                     <div className="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-100">
                         Edit
                     </div>

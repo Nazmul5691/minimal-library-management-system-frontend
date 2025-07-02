@@ -1,4 +1,6 @@
 import App from "@/App";
+import BookDetails from "@/components/module/books/BookDetails";
+import UpdateBook from "@/components/module/books/UpdateBook";
 import AboutUs from "@/pages/AboutUs";
 import AddBook from "@/pages/AddBook";
 import Authors from "@/pages/Authors";
@@ -21,6 +23,16 @@ export const router = createBrowserRouter([
             {
                 path: "/books",
                 element: <Books />
+            },
+            {
+                path: "/books/:id",
+                element: <BookDetails />,
+                // loader: ({params}) =>fetch(`http://localhost:5173/books/${params.id}`)
+            },
+            {
+                path: "/edit-book/:id",
+                element: <UpdateBook />,
+                // loader: ({params}) =>fetch(`http://localhost:5173/books/${params.id}`)
             },
             {
                 path: "/create-book",

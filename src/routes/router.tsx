@@ -5,7 +5,7 @@ import Authors from "@/pages/Authors";
 import Books from "@/pages/Books";
 import BorrowSummary from "@/pages/BorrowSummary";
 import ContactUs from "@/pages/ContactUs";
-import Home from "@/pages/home";
+import Home from "@/pages/Home";
 import { createBrowserRouter } from "react-router-dom";
 
 

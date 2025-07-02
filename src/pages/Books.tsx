@@ -1,5 +1,5 @@
 
-import BooksCard from "@/components/module/books/booksCard";
+import BooksCard from "@/components/module/books/BooksCard";
 import { useAppSelector } from "@/redux/hook";
 
 export default function Books() {

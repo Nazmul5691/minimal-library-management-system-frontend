@@ -58,6 +58,13 @@ export default function BookDetails() {
                 >
                     Borrow Book
                 </Link>
+                <button
+                    // onClick={handleDelete}
+                    className="inline-block px-6 py-2 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-700 transition"
+                    type="button"
+                >
+                    Delete Book
+                </button>
             </div>
         </div>
     );

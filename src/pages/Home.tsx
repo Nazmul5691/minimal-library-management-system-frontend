@@ -1,7 +1,9 @@
+import AllBooks from "@/components/module/home/AllBooks";
+
 export default function Home() {
     return (
         <div>
-            <h1>This is Home component Page</h1>
+            <AllBooks />
         </div>
     );
 }

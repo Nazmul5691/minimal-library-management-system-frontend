@@ -1,7 +1,7 @@
 
 import type { IBook } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
-import {nanoid, type PayloadAction } from "@reduxjs/toolkit";
+import { nanoid, type PayloadAction } from "@reduxjs/toolkit";
 
 
 interface InitialState {
@@ -44,6 +44,16 @@ const createBook = (bookData: DraftBook): IBook => {
     }
 }
 
+
+const updatedBookData = (bookData: IBook): IBook => {
+    const copies = Number(bookData.copies);
+    return {
+        ...bookData,
+        copies,
+        available: copies > 0,
+    };
+};
+
 const bookSlice = createSlice({
     name: "books",
     initialState,
@@ -51,11 +61,20 @@ const bookSlice = createSlice({
         addBook: (state, action: PayloadAction<DraftBook>) => {
             const bookData = createBook(action.payload)
             state.book.push(bookData)
+        },
+        updateBook: (state, action: PayloadAction<IBook>) => {
+            const index = state.book.findIndex(book => book._id === action.payload._id)
+            if (index !== -1) {
+                state.book[index] = updatedBookData(action.payload)
+            }
+        },
+        deleteBook: (state, action: PayloadAction<string>) =>{
+            state.book = state.book.filter(book => book._id !== action.payload)
         }
     }
 })
 
 
-export const { addBook } = bookSlice.actions;
+export const { addBook, updateBook, deleteBook } = bookSlice.actions;
 
 export default bookSlice.reducer;

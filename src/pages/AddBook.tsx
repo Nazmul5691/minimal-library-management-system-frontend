@@ -17,6 +17,7 @@ import { DialogDescription } from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function AddBook() {
   const [open, setOpen] = useState(false);
@@ -41,13 +42,23 @@ export default function AddBook() {
     dispatch(addBook(data as IBook));
     setOpen(false);
     form.reset();
+
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Book Added Successfully",
+      showConfirmButton: false,
+      timer: 1500
+    });
+
+
     navigate("/books");
   };
 
   return (
     <div className="max-w-lg mx-auto my-20 p-6 bg-white rounded-lg shadow-2xl">
       <h2 className="text-3xl font-semibold mb-6 text-center text-gray-800">Add New Book</h2>
-      
+
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button className="mb-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium">
@@ -170,7 +181,6 @@ export default function AddBook() {
                         onChange={(e) => field.onChange(e.target.value === "true")}
                       >
                         <option value="true">Available</option>
-                        <option value="false">Unavailable</option>
                       </select>
                     </FormControl>
                   </FormItem>

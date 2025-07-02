@@ -40,6 +40,13 @@ export function Navbar() {
                                     </NavigationMenuLink>
                                 </NavigationMenuItem>
 
+                                {/* add books */}
+                                <NavigationMenuItem>
+                                    <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                                        <Link to="/create-book">Add Books</Link>
+                                    </NavigationMenuLink>
+                                </NavigationMenuItem>
+
                                 {/* borrow summary */}
                                 <NavigationMenuItem>
                                     <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>

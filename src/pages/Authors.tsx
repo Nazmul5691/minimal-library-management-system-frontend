@@ -18,7 +18,7 @@ const mockAuthors: Author[] = [
     id: '1',
     name: 'Jane Austen',
     bio: 'An English novelist known primarily for her six major novels, which interpret, critique and comment upon the British landed gentry at the end of the 18th century.',
-    imageUrl: 'https://placehold.co/120x120/8b5cf6/ffffff?text=J.A.', // Example: purple theme
+    imageUrl: 'https://placehold.co/120x120/8b5cf6/ffffff?text=J.A.', 
     bookCount: 6,
     socials: {
       twitter: 'https://twitter.com/janeausten',
@@ -70,7 +70,7 @@ const mockAuthors: Author[] = [
 
 export default function Authors() {
   return (
-    <div className="min-h-screen bg-gray-50 font-inter text-gray-800 py-16">
+    <div className="min-h-screen bg-gray-50 font-inter text-gray-800 pt-24 pb-16">
       {/* Authors Grid Section */}
       <section className="container mx-auto px-6">
         <div className="flex items-center justify-center mb-10 text-indigo-600">

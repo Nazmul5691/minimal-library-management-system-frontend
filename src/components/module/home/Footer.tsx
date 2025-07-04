@@ -6,13 +6,13 @@ const Footer = () => {
         <div className="bg-[#F1F1F8] dark:bg-gray-900">
             <footer>
                 <div>
-                    <div className="px-5 md:px-10 lg:px-20 py-10 text-black dark:text-gray-300 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-7">
+                    <div className="px-5 md:px-10 lg:px-20 py-10 text-black dark:text-gray-300 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
                         <div className="w-full col-span-1 lg:col-span-2">
                             <h1 className="font-bold text-blue-900 dark:text-blue-400 text-2xl lg:text-3xl pb-3">
-                                MyLibrary
+                                Bookly
                             </h1>
                             <p className="text-sm lg:text-base">
-                                MyLibrary is your trusted book management system.
+                                Bookly is your trusted book management system.
                             </p>
                             <p className="pt-1 text-sm lg:text-base">
                                 Manage your books, members, and borrowing easily.
@@ -33,20 +33,12 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        <div className="w-full text-sm">
-                            <h1 className="text-xl lg:text-2xl pb-3">Features</h1>
-                            <div><a href="#" className="link link-hover">Book Catalog</a></div>
-                            <div><a href="#" className="link link-hover">Member Management</a></div>
-                            <div><a href="#" className="link link-hover">Borrowing & Returns</a></div>
-                            <div><a href="#" className="link link-hover">Reservation System</a></div>
-                            <div><a href="#" className="link link-hover">Reports & Analytics</a></div>
-                        </div>
 
                         <div className="w-full text-sm pl-0 lg:pl-5">
                             <h1 className="text-xl lg:text-2xl pb-3">Company</h1>
-                            <div><a href="#" className="link link-hover">About Us</a></div>
-                            <div><a href="#" className="link link-hover">Contact Us</a></div>
-                            <div><a href="#" className="link link-hover">Careers</a></div>
+                            <div><a href="/authors" className="link link-hover">Authors</a></div>
+                            <div><a href="/aboutUs" className="link link-hover">About Us</a></div>
+                            <div><a href="/contact" className="link link-hover">Contact Us</a></div>
                         </div>
 
                         <div className="w-full text-sm">
@@ -60,7 +52,7 @@ const Footer = () => {
                     <div className="pb-10 text-black dark:text-gray-400">
                         <p className="text-center">
                             <span className="text-blue-800 dark:text-blue-400">
-                                <a href="#">MyLibrary</a>
+                                <a href="#">Bookly</a>
                             </span>{" "}
                             © 2024 - All rights reserved
                         </p>

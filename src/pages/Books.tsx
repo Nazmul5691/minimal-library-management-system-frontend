@@ -21,7 +21,7 @@ export default function Books() {
     }
 
     return (
-        <div className="min-h-screen px-4 py-8 bg-gray-50">
+        <div className="min-h-screen mt-14 px-4 py-8 bg-gray-50">
             <div className="max-w-7xl mx-auto mb-8 text-center">
                 <h1 className="text-3xl font-bold text-gray-800 mb-2">📚 All Books</h1>
                 <p className="text-gray-500 text-sm">

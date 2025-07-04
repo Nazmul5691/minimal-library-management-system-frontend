@@ -50,7 +50,7 @@ export default function UpdateBook() {
         }
     }, [book, reset]);
 
-    // Watch available field, if 'Unavailable' selected, set copies to 0 automatically
+    
     useEffect(() => {
         const subscription = watch((value, { name }) => {
             if (name === "available" && value.available === false) {
@@ -86,7 +86,7 @@ export default function UpdateBook() {
     };
 
     return (
-        <div className="max-w-xl mx-auto p-8 bg-white rounded-3xl shadow-lg mt-12">
+        <div className="max-w-xl mx-auto p-8 bg-white rounded-3xl shadow-xl mt-24 mb-10">
             <h1 className="text-3xl font-bold mb-8 text-gray-900">
                 Update Book: {book?.title}
             </h1>

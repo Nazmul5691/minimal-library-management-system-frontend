@@ -1,6 +1,6 @@
 
 
-import Form from "@/components/form";
+import Form from "@/components/From";
 import { FaMobileAlt } from "react-icons/fa";
 import { IoMailUnreadSharp } from "react-icons/io5";
 

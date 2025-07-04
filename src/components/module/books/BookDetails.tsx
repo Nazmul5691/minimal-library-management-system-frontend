@@ -16,7 +16,7 @@ export default function BookDetails() {
         
 
     return (
-        <div className="max-w-3xl mx-auto p-8 bg-white rounded-3xl shadow-2xl mt-12">
+        <div className="max-w-3xl mx-auto mt-40 mb-20 p-8 bg-white rounded-3xl shadow-2xl">
             <h1 className="text-4xl font-extrabold text-gray-900 mb-4">{book.title}</h1>
             <p className="text-lg italic text-gray-600 mb-6">by {book.author}</p>
 

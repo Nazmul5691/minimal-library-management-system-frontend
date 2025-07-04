@@ -1,4 +1,5 @@
 
+
 import { Button } from "@/components/ui/button";
 import { DialogFooter } from "@/components/ui/dialog";
 import {
@@ -10,27 +11,23 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { useNavigate, useParams } from "react-router-dom";
 import {
     useForm,
     type FieldValues,
     type SubmitHandler,
 } from "react-hook-form";
-import { updateBook } from "@/redux/features/books/allBookSlice";
-import type { IBook } from "@/types";
 import { useEffect } from "react";
-import Swal from 'sweetalert2'
-
-
+import Swal from "sweetalert2";
+import { useGetSingleBookQuery, useUpdateBookMutation } from "@/redux/api/baseApi";
 
 export default function UpdateBook() {
-
     const { id } = useParams<{ id: string }>();
-    const books = useAppSelector((state) => state.books.book);
-    const book = books.find((b) => b._id === id);
+    const { data } = useGetSingleBookQuery(id);
+    const book = data?.data;
 
-    const dispatch = useAppDispatch();
+    const [updatedBook] = useUpdateBookMutation();
+
     const navigate = useNavigate();
 
     const form = useForm({
@@ -45,35 +42,47 @@ export default function UpdateBook() {
         },
     });
 
-    const { reset } = form;
-
+    const { reset, watch, setValue } = form;
 
     useEffect(() => {
         if (book) {
-            reset(book); // Prefill form
+            reset(book);
         }
     }, [book, reset]);
 
-
-
-    const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        const updated: IBook = {
-            ...book!,
-            ...data,
-        };
-
-        dispatch(updateBook(updated));
-
-
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Book Updated Successfully",
-            showConfirmButton: false,
-            timer: 1500
+    // Watch available field, if 'Unavailable' selected, set copies to 0 automatically
+    useEffect(() => {
+        const subscription = watch((value, { name }) => {
+            if (name === "available" && value.available === false) {
+                setValue("copies", 0);
+            }
         });
+        return () => subscription.unsubscribe();
+    }, [watch, setValue]);
 
-        navigate("/books");
+    const onSubmit: SubmitHandler<FieldValues> = async (formData) => {
+        if (!id) return;
+
+        try {
+            await updatedBook({ bookId: id, updatedData: formData }).unwrap();
+
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Book Updated Successfully",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+
+            navigate("/books");
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Update failed",
+                text: "Something went wrong while updating the book.",
+            });
+            console.log(error);
+        }
     };
 
     return (
@@ -149,6 +158,7 @@ export default function UpdateBook() {
                                         onChange={(e) => field.onChange(Math.max(0, Number(e.target.value)))}
                                         placeholder="Available copies"
                                         min={0}
+                                        disabled={watch("available") === false} // disable if unavailable
                                     />
                                 </FormControl>
                             </FormItem>
@@ -163,6 +173,26 @@ export default function UpdateBook() {
                                 <FormLabel>Description</FormLabel>
                                 <FormControl>
                                     <Textarea {...field} placeholder="Book description" />
+                                </FormControl>
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name="available"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Availability</FormLabel>
+                                <FormControl>
+                                    <select
+                                        className="w-full border border-gray-300 rounded-md px-3 py-2"
+                                        value={String(field.value ?? true)}
+                                        onChange={(e) => field.onChange(e.target.value === "true")}
+                                    >
+                                        <option value="true">Available</option>
+                                        <option value="false">Unavailable</option>
+                                    </select>
                                 </FormControl>
                             </FormItem>
                         )}

@@ -1,18 +1,19 @@
 
 import { Link, useParams } from "react-router-dom";
-import { useAppSelector } from "@/redux/hook";
+import { useGetSingleBookQuery } from "@/redux/api/baseApi";
 
 export default function BookDetails() {
 
     const { id } = useParams<{ id: string }>();
 
-    const books = useAppSelector((state) => state.books.book);
+    const {data , isLoading} = useGetSingleBookQuery(id);
 
-    const book = books.find((b) => b._id === id);
+    const book = data?.data;
 
-    if (!book) {
-        return <div className="text-red-600">Book not found</div>;
+    if (isLoading) {
+        return <p>Loading...</p>;
     }
+        
 
     return (
         <div className="max-w-3xl mx-auto p-8 bg-white rounded-3xl shadow-2xl mt-12">

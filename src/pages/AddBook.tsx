@@ -10,9 +10,7 @@ import {
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { addBook } from "@/redux/features/books/allBookSlice";
-import { useAppDispatch } from "@/redux/hook";
-import type { IBook } from "@/types";
+import { useCreateBookMutation } from "@/redux/api/baseApi";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
@@ -21,6 +19,7 @@ import Swal from "sweetalert2";
 
 export default function AddBook() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const form = useForm({
     defaultValues: {
@@ -34,12 +33,19 @@ export default function AddBook() {
     },
   });
 
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  // const dispatch = useAppDispatch();
+  const [createBook, {data}] = useCreateBookMutation();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  console.log('create book data', data);
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+
     console.log("form data", data);
-    dispatch(addBook(data as IBook));
+
+    const res = await createBook(data)
+
+    console.log(res);
+    
     setOpen(false);
     form.reset();
 
@@ -199,3 +205,6 @@ export default function AddBook() {
     </div>
   );
 }
+
+
+

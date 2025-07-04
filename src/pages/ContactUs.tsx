@@ -28,6 +28,7 @@ const ContactUs = () => {
                                     Call us to learn more about how Bookly can streamline your library system.
                                 </p>
                             </div>
+                            
                             <div className="h-1 bg-purple-500 mt-4"></div>
                         </div>
 

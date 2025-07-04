@@ -1,13 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { IBorrow } from "@/types";
+
 import { BookText, Hash, Barcode } from 'lucide-react'; 
 
-interface Props {
-    borrow: IBorrow;
-}
 
-export default function BorrowBookCard({ borrow }: Props) {
+
+export default function BorrowBookCard({ borrow }: any) {
     console.log(borrow);
+
 
     return (
         <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100

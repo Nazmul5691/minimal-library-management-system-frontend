@@ -1,7 +1,6 @@
 
-import { PencilRuler, BookOpen, Twitter, Globe } from 'lucide-react'; // Icons
+import { PencilRuler, BookOpen, Twitter, Globe } from 'lucide-react';
 
-// Define the Author interface for type safety (you can move this to a types file)
 interface Author {
   id: string;
   name: string;
@@ -14,7 +13,6 @@ interface Author {
   };
 }
 
-// Mock data for authors (replace with data fetched from your API)
 const mockAuthors: Author[] = [
   {
     id: '1',
@@ -31,7 +29,7 @@ const mockAuthors: Author[] = [
     id: '2',
     name: 'George Orwell',
     bio: 'An English novelist, essayist, journalist, and critic whose work is characterised by lucid prose, biting social criticism, opposition to totalitarianism, and outspoken support of democratic socialism.',
-    imageUrl: 'https://placehold.co/120x120/6366f1/ffffff?text=G.O.', // Example: indigo theme
+    imageUrl: 'https://placehold.co/120x120/6366f1/ffffff?text=G.O.', 
     bookCount: 9,
     socials: {
       twitter: 'https://twitter.com/georgeorwell',

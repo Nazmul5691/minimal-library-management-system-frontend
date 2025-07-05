@@ -85,15 +85,24 @@ export default function AddBook() {
         } catch (error) {
             console.error("Failed to add book:", error);
             let errorMessage = "Failed to add the book. Please try again.";
+
+           
             if ((error as any)?.data?.message) {
                 errorMessage = (error as any).data.message;
-            } else if (error instanceof Error) {
+            }
+            if (errorMessage.toLowerCase().includes("isbn")) {
+                setOpen(false)
+                errorMessage = "A book with this ISBN already exists!";
+            }
+            else if (error instanceof Error) {
                 errorMessage = error.message;
             }
+
             Swal.fire({
                 icon: "error",
                 title: "Error",
                 text: errorMessage,
+                showCloseButton: true
             });
         }
     };
@@ -102,23 +111,23 @@ export default function AddBook() {
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 font-inter pb-10 text-gray-800 dark:text-gray-100">
 
             {/* Banner Section */}
-            <section className="bg-gradient-to-br from-indigo-600 to-purple-700 pb-12 pt-20 text-white shadow-md rounded-b-3xl  md:mb-14 lg:mb-12"> 
-                <div className="container mx-auto px-4 md:px-6 text-center"> 
+            <section className="bg-gradient-to-br from-indigo-600 to-purple-700 pb-12 pt-20 text-white shadow-md rounded-b-3xl  md:mb-14 lg:mb-12">
+                <div className="container mx-auto px-4 md:px-6 text-center">
                     <div className="flex items-center justify-center my-4">
-                        <Library className="w-10 h-10 md:w-16 md:h-16 text-indigo-100 mr-3 md:mr-4 animate-fade-in-down" /> 
-                        <h1 className="text-xl md:text-4xl font-extrabold leading-tight animate-fade-in-down"> 
+                        <Library className="w-10 h-10 md:w-16 md:h-16 text-indigo-100 mr-3 md:mr-4 animate-fade-in-down" />
+                        <h1 className="text-xl md:text-4xl font-extrabold leading-tight animate-fade-in-down">
                             Expand Our Collection
                         </h1>
                     </div>
-                    <p className="text-sm md:text-lg max-w-3xl mx-auto opacity-90 animate-fade-in-up px-2"> 
+                    <p className="text-sm md:text-lg max-w-3xl mx-auto opacity-90 animate-fade-in-up px-2">
                         Share your favorite literary gems with the Bookly community! Easily add new books to our growing library.
                     </p>
                 </div>
             </section>
 
             {/* Add New Book Form Section */}
-            <section className="max-w-[300px] md:max-w-lg mx-auto mt-4 p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-100 dark:border-gray-700 "> 
-                <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center text-gray-800 dark:text-gray-100">Add New Book</h2> 
+            <section className="max-w-[300px] md:max-w-lg mx-auto mt-4 p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-100 dark:border-gray-700 ">
+                <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center text-gray-800 dark:text-gray-100">Add New Book</h2>
 
                 <Dialog open={open} onOpenChange={setOpen}>
                     <DialogTrigger asChild>
@@ -127,10 +136,10 @@ export default function AddBook() {
                         </Button>
                     </DialogTrigger>
 
-                    <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700"> 
+                    <DialogContent className="sm:max-w-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700">
                         <DialogHeader>
-                            <DialogTitle className="text-xl font-semibold text-gray-900 dark:text-gray-100">Add Book Details</DialogTitle> 
-                            <DialogDescription className="text-gray-600 dark:text-gray-400"> 
+                            <DialogTitle className="text-xl font-semibold text-gray-900 dark:text-gray-100">Add Book Details</DialogTitle>
+                            <DialogDescription className="text-gray-600 dark:text-gray-400">
                                 Fill out the form below to add a new book to the library.
                             </DialogDescription>
                         </DialogHeader>
@@ -148,7 +157,7 @@ export default function AddBook() {
                                                 <FormLabel className="text-gray-700 dark:text-gray-300">Title</FormLabel>
                                                 <FormControl>
                                                     <Input
-                                                        className="bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600 placeholder:text-gray-400 dark:placeholder:text-gray-400" 
+                                                        className="bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 border-gray-300 dark:border-gray-600 placeholder:text-gray-400 dark:placeholder:text-gray-400"
                                                         {...field}
                                                         placeholder="Enter book title"
                                                         value={field.value ?? ""}
@@ -280,7 +289,7 @@ export default function AddBook() {
                                                 <FormControl>
                                                     <select
                                                         className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors
-                                                                   bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 dark:border-gray-600" 
+                                                                   bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 dark:border-gray-600"
                                                         value={String(field.value ?? true)}
                                                         onChange={(e) => field.onChange(e.target.value === "true")}
                                                     >
@@ -308,3 +317,4 @@ export default function AddBook() {
         </div>
     );
 }
+

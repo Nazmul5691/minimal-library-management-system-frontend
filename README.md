@@ -24,6 +24,7 @@ A full-stack Library Management System built with **React, Redux Toolkit Query, 
 - Vercel Deployment
 
 ### 🔶 Backend
+- Node.js
 - Express.js
 - TypeScript
 - MongoDB with Mongoose

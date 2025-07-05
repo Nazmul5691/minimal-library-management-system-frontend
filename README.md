@@ -1,69 +1,233 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 📚 Minimal Library Management System
 
-Currently, two official plugins are available:
+A full-stack Library Management System built with **React, Redux Toolkit Query, Tailwind CSS** on the frontend and **Express, TypeScript, MongoDB (Mongoose)** on the backend.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Live Demo
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🔗 **Frontend:** [https://minimal-library-management-system-f.vercel.app](https://minimal-library-management-system-f.vercel.app)  
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- 🔗 **Backend API:** [https://minimal-library-management-system-b.vercel.app](https://minimal-library-management-system-b.vercel.app)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🧩 Tech Stack
+
+### 🔷 Frontend
+- React + TypeScript
+- Redux Toolkit + RTK Query
+- Tailwind CSS
+- React Router
+- Dark/Light Mode Toggle
+- Vercel Deployment
+
+### 🔶 Backend
+- Express.js
+- TypeScript
+- MongoDB with Mongoose
+- RESTful API
+- Vercel Serverless Deployment
+
+---
+
+## 📁 Frontend Structure
+
+```
+├── src
+│   ├── assets
+│   ├── components
+│   │   ├── module
+│   │   │   ├── From.tsx
+│   │   │   ├── borrowBooks
+│   │   │   │   └── BorrowBookCard.tsx
+│   │   │   └── books
+│   │   │       └── BooksCard.tsx
+│   │   └── ui
+│   │       ├── button.tsx
+│   │       ├── calendar.tsx
+│   │       ├── dialog.tsx
+│   │       ├── form.tsx
+│   │       ├── input.tsx
+│   │       ├── mood-toggler.tsx
+│   │       ├── navigation-menu.tsx
+│   │       ├── popover.tsx
+│   │       └── textarea.tsx
+│   ├── layout
+│   │   └── Navbar.tsx
+│   ├── lib
+│   │   └── utils.ts
+│   ├── pages
+│   │   ├── AboutUs.tsx
+│   │   ├── AddBook.tsx
+│   │   ├── Authors.tsx
+│   │   ├── Books.tsx
+│   │   ├── BorrowBook.tsx
+│   │   ├── BorrowSummary.tsx
+│   │   ├── ContactUs.tsx
+│   │   └── Home.tsx
+│   ├── providers
+│   │   └── theme-provider.tsx
+│   └── redux
+│       ├── api
+│       │   └── baseApi.ts
+│       ├── hook.ts
+│       └── store.ts
+│   ├── routes
+│   │   └── router.tsx
+│   ├── App.css
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   ├── types.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📁 Backend Structure
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src
+├── app
+│   ├── controllers
+│   │   ├── book.controller.ts
+│   │   └── borrow.controller.ts
+│   ├── models
+│   │   ├── book.model.ts
+│   │   └── borrow.model.ts
+│   ├── interfaces
+│   │   ├── book.interface.ts
+│   │   └── borrow.interface.ts
+│   ├── routes
+│   │   ├── book.route.ts
+│   │   └── borrow.route.ts
+│   ├── middlewares
+│   │   └── errorHandler.ts
+├── app.ts
+└── server.ts
+```
+
+---
+
+## ⚙️ Features
+
+### ✅ Frontend
+- Public book listings
+- Add, edit, and delete books
+- Borrow book functionality
+- Quantity & due date validation
+- Borrow summary
+- Mobile-friendly responsive UI
+- Dark/Light Mode
+- Clean design with Tailwind
+
+### ✅ Backend
+- RESTful API
+- Book management (CRUD)
+- Mongoose schema validation
+- Business logic for borrowing and availability
+- Aggregation pipeline for summary
+- Static & middleware methods in Mongoose
+- Error handling middleware
+
+---
+
+## 🌐 Environment Variables
+
+### ✅ Backend
+Create `.env` in root:
+```
+DATABASE_URL=mongodb+srv://<your-db-url>
+PORT=5000
+```
+
+### ✅ Frontend
+Create `.env`:
+```
+VITE_API_BASE_URL=https://library-management-backend-theta.vercel.app
+```
+
+---
+
+## 📦 Installation & Setup
+
+### 🔹 Backend
+
+```bash
+git clone https://github.com/Nazmul5691/minimal_library_management_system-backend
+cd minimal_library_management_system-backend
+npm install
+npm run dev
+```
+
+### 🔹 Frontend
+
+```bash
+git clone https://github.com/Nazmul5691/minimal-library-management-system-frontend.git
+cd minimal-library-management-system-frontend
+npm install
+npm run dev
+```
+
+---
+
+## 📌 API Endpoints (Backend)
+
+### 📚 Book Management
+
+- `POST /books` → Create a book  
+- `GET /books` → Get all books (filter, sort, limit supported)  
+- `GET /books/:bookId` → Get book by ID  
+- `PUT /books/:bookId` → Update book  
+- `DELETE /books/:bookId` → Delete book  
+
+### 🔁 Borrow Management
+
+- `POST /borrow` → Borrow a book  
+- `GET /borrow` → Get borrow summary  
+
+#### Sample Borrow Body:
+```json
+{
+  "book": "<book-id>",
+  "quantity": 2,
+  "dueDate": "2025-07-18T00:00:00.000Z"
+}
+```
+
+---
+
+## 🧪 Example Test Data
+
+```json
+{
+  "title": "1984",
+  "author": "George Orwell",
+  "genre": "FICTION",
+  "isbn": "9780451524935",
+  "description": "A dystopian social science fiction novel.",
+  "copies": 3,
+  "available": true
+}
+```
+
+---
+
+## ⚒️ Deployment (Vercel)
+
+### ✅ Backend
+- Deployed as serverless functions
+- `.vercel.json` configured if needed
+- Environment variables added via Vercel dashboard
+
+### ✅ Frontend
+- Automatically deployed via Git integration
+- Uses Vite + React + Tailwind
+
+---
+
+## ✨ Author
+
+- **Nazmul Islam**
+

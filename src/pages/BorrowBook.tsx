@@ -88,7 +88,7 @@ export default function BorrowBook() {
       Swal.fire("Success", "Book borrowed successfully!", "success");
       setOpen(false);
       form.reset();
-      
+
       navigate("/borrow-summary");
 
     } catch (error) {
@@ -116,11 +116,11 @@ export default function BorrowBook() {
           <div className="flex items-center justify-center my-4">
             <BookPlus className="w-12 h-12 md:w-16 md:h-16 text-indigo-100 mr-4 animate-fade-in-down" />
             <h1 className="text-2xl md:text-4xl font-extrabold leading-tight animate-fade-in-down">
-              Borrowing: {book.title}
+              Borrowing: {book?.data?.title}
             </h1>
           </div>
           <p className="text-md md:text-lg max-w-3xl mx-auto opacity-90 animate-fade-in-up">
-            Explore this captivating story by <span className="font-semibold">{book.author}</span>, a fantastic read in the <span className="font-semibold">{book.genre}</span> category.
+            Explore this captivating story by <span className="font-semibold">{book?.data?.author}</span>, a fantastic read in the <span className="font-semibold">{book?.data?.genre}</span> category.
           </p>
 
         </div>
@@ -129,15 +129,20 @@ export default function BorrowBook() {
       <section className="">
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button className="mb-10 block w-[200px] mx-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium">
-              Borrow this Book
+            <Button className="mb-10 cursor-pointer block w-[250px] h-20 mx-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium">
+              <div className="flex flex-col">
+                <span className="text-lg font-medium">
+                 {book?.data?.title}
+                </span>
+                Borrow this Book
+              </div>
             </Button>
           </DialogTrigger>
 
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
-              <DialogTitle className="text-xl font-semibold text-gray-900">
-                Borrow Book
+              <DialogTitle className="text-xl font-semibold dark:text-white text-gray-900">
+                Borrow the Book
               </DialogTitle>
               <DialogDescription>
                 Fill out the form below to borrow the selected book.
@@ -165,7 +170,7 @@ export default function BorrowBook() {
                         <Input
                           type="number"
                           min={1}
-                          max={String(book.copies)} // <-- max as string to avoid warning
+                          max={String(book.copies)} 
                           {...field}
                           onChange={(e) => field.onChange(Number(e.target.value))}
                         />

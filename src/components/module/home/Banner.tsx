@@ -3,7 +3,7 @@ import { BookOpen, Sparkles } from 'lucide-react';
 
 export default function Banner() {
     return (
-        <section className="relative overflow-hidden mt-5 bg-gradient-to-r from-indigo-700 to-purple-800 text-white py-16 md:py-24 lg:py-32 shadow-xl">
+        <section className="relative overflow-hidden mt-8 bg-gradient-to-r from-indigo-700 to-purple-800 text-white py-32 md:py-24 lg:py-32 shadow-xl">
            
             <div className="absolute h-[50px] w-[50px] inset-0 z-0 opacity-10">
                 <svg
